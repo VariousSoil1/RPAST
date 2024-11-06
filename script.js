@@ -28,6 +28,19 @@ function updateReviewList() {
     });
 }
 
+// Function to show the current question
+function showQuestion(questionNumber) {
+    let allQuestions = document.querySelectorAll(".question");
+    allQuestions.forEach(function (question) {
+        question.style.display = "none"; // Hide all questions
+    });
+
+    let currentQuestion = document.getElementById("question" + questionNumber);
+    if (currentQuestion) {
+        currentQuestion.style.display = "block"; // Show the selected question
+    }
+}
+
 // Go to a specific question when clicked from the review list
 function goToQuestion(questionNumber) {
     // Hide all questions
