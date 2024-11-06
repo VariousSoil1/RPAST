@@ -5,27 +5,52 @@ let reviewQuestions = new Set();
 let userName = "";
 
 function markForReview(questionNumber) {
-    // Check if the question has already been marked for review
+    // Check if the question has already been marked
     if (!markedQuestions.includes(questionNumber)) {
-        markedQuestions.push(questionNumber); // Add to the list
-        updateReviewList(); // Update sidebar
+        markedQuestions.push(questionNumber); // Add to the marked list
+        updateReviewList(); // Update the review sidebar
     }
 }
 
-// Update the review sidebar
+// Update the review sidebar to show marked questions
 function updateReviewList() {
     let reviewList = document.getElementById("reviewList");
-    reviewList.innerHTML = ""; // Clear the current list
+    reviewList.innerHTML = ""; // Clear the existing review list
 
-    // Add each marked question to the list
+    // Loop through each marked question and add it to the sidebar list
     markedQuestions.forEach(function (questionNumber) {
         let li = document.createElement("li");
         li.textContent = "Question " + questionNumber;
         li.onclick = function () {
-            goToQuestion(questionNumber); // Navigate to the marked question
+            goToQuestion(questionNumber); // Go to the question when clicked
         };
-        reviewList.appendChild(li);
+        reviewList.appendChild(li); // Append to the review list
     });
+}
+
+// Function to navigate to a specific question when clicked from the review list
+function goToQuestion(questionNumber) {
+    let allQuestions = document.querySelectorAll(".question");
+    allQuestions.forEach(function (question) {
+        question.style.display = "none"; // Hide all questions
+    });
+
+    let currentQuestion = document.getElementById("question" + questionNumber);
+    if (currentQuestion) {
+        currentQuestion.style.display = "block"; // Show the selected question
+    }
+}
+
+// Function to start the test
+function startTest() {
+    let userName = document.getElementById("userName").value;
+    if (!userName) {
+        alert("Please enter your name.");
+        return;
+    }
+    document.getElementById("introSection").style.display = "none";
+    document.getElementById("testContent").style.display = "block";
+    showQuestion(1); // Start with the first question
 }
 
 // Function to show the current question
@@ -41,72 +66,15 @@ function showQuestion(questionNumber) {
     }
 }
 
-// Go to a specific question when clicked from the review list
-function goToQuestion(questionNumber) {
-    // Hide all questions
-    let allQuestions = document.querySelectorAll(".question");
-    allQuestions.forEach(function (question) {
-        question.style.display = "none";
-    });
-
-    // Show the selected question
-    let question = document.getElementById("question" + questionNumber);
-    if (question) {
-        question.style.display = "block";
-    }
-}
-
-// Show the introductory section to collect user info
-function startTest() {
-    userName = document.getElementById("userName").value;
-    if (!userName) {
-        alert("Please enter your name.");
-        return;
-    }
-    // Hide the intro section and show the test container
-    document.getElementById("introSection").style.display = "none";
-    document.getElementById("testContent").style.display = "block";
-    
-    // Set the user's name in the header or anywhere needed
-    document.getElementById('testContent').innerHTML += `<h3>Hello, ${userName}! Please start the test.</h3>`;
-
-    showQuestion(currentQuestion);
-}
-
-function showQuestion(questionNumber) {
-    // Hide all questions and display the current one
-    document.querySelectorAll(".question").forEach(q => q.style.display = "none");
-    const currentQ = document.getElementById(`question${questionNumber}`);
-    if (currentQ) currentQ.style.display = "block";
-
-    // Hide/Show Next and Previous Buttons
-    document.querySelector("button[onclick='previousQuestion()']").disabled = questionNumber === 1;
-    document.querySelector("button[onclick='nextQuestion()']").disabled = questionNumber === totalQuestions;
-
-    // Show Submit Button only on the last question
-    const submitButton = document.querySelector(".submit-section");
-    if (questionNumber === totalQuestions) {
-        submitButton.style.display = "block";  // Show the Submit button
-    } else {
-        submitButton.style.display = "none";   // Hide the Submit button
-    }
-}
-
+// Example functions to navigate between questions
 function nextQuestion() {
-    if (currentQuestion < totalQuestions) {
-        currentQuestion++;
-        showQuestion(currentQuestion);
-    }
+    let currentQuestion = document.querySelector(".question:visible");
+    let currentQuestionNumber = parseInt(currentQuestion.id.replace("question", ""));
+    showQuestion(currentQuestionNumber + 1);
 }
 
 function previousQuestion() {
-    if (currentQuestion > 1) {
-        currentQuestion--;
-        showQuestion(currentQuestion);
-    }
-}
-
-function submitTest() {
-    alert("Test Submitted! Thank you for participating.");
-    // You can also handle submitting data or redirecting to another page here.
+    let currentQuestion = document.querySelector(".question:visible");
+    let currentQuestionNumber = parseInt(currentQuestion.id.replace("question", ""));
+    showQuestion(currentQuestionNumber - 1);
 }
