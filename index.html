@@ -27,30 +27,27 @@
                 <p>Answer each question. You can mark questions for review or navigate back to previous questions.</p>
             </div>
 
-            <!-- Questions container -->
-            <div id="questions">
-                <!-- Sample Question -->
-                <section class="question" id="question1">
+            <!-- Questions List -->
+            <ul id="questionsList">
+                <!-- Example Question - Repeat and adjust up to 114 as needed -->
+                <li class="question" id="question1">
                     <p>1. What is the primary goal of *Rivals* on Roblox?</p>
-                    <label><input type="radio" name="q1" value="a"> To defeat NPCs</label>
-                    <label><input type="radio" name="q1" value="b"> To be the first to 5 points in a 1v1 or 5v5 duel</label>
-                    <label><input type="radio" name="q1" value="c"> To collect the most coins in the game</label>
-                    <label><input type="radio" name="q1" value="d"> To unlock skins and new maps</label>
+                    <ul class="answer-options">
+                        <li><label><input type="radio" name="q1" value="a"> To defeat NPCs</label></li>
+                        <li><label><input type="radio" name="q1" value="b"> To be the first to 5 points in a 1v1 or 5v5 duel</label></li>
+                        <li><label><input type="radio" name="q1" value="c"> To collect the most coins in the game</label></li>
+                        <li><label><input type="radio" name="q1" value="d"> To unlock skins and new maps</label></li>
+                    </ul>
                     <button class="review-btn" onclick="markForReview(1)">Mark for Review</button>
-                </section>
-                <!-- Continue adding questions up to 114 as needed -->
+                </li>
+                <!-- Continue adding questions here up to 114 -->
+            </ul>
+
+            <!-- Submit Button (only show at the end) -->
+            <div class="submit-section">
+                <button onclick="submitTest()">Submit Test</button>
             </div>
 
-            <!-- Navigation buttons -->
-            <div class="navigation">
-                <button onclick="previousQuestion()">Previous</button>
-                <button onclick="nextQuestion()">Next</button>
-            </div>
-
-            <!-- Submit Button (only show on the last question) -->
-            <div class="submit-section" style="display: none;">
-                <button onclick="submitTest()">Submit</button>
-            </div>
             <div id="result"></div>
         </div>
 
