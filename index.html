@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPast Assessment Test - Rivals Quiz</title>
+    <title>RPAST Assessment Test - Rivals Exam</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -20,7 +20,7 @@
         <div id="questions">
             <!-- Question 1 -->
             <section class="question" id="question1">
-                <p>1. What is the primary goal of *Rivals* on Roblox?</p>
+                <p>1. What is the primary goal of Rivals on Roblox?</p>
                 <label><input type="radio" name="q1" value="a"> To defeat NPCs</label>
                 <label><input type="radio" name="q1" value="b"> To be the first to 5 points in a 1v1 or 5v5 duel</label>
                 <label><input type="radio" name="q1" value="c"> To collect the most coins in the game</label>
@@ -30,7 +30,7 @@
 
             <!-- Question 2 -->
             <section class="question" id="question2">
-                <p>2. How many players are involved in a standard 1v1 duel in *Rivals*?</p>
+                <p>2. How many players are involved in a standard 1v1 duel?</p>
                 <label><input type="radio" name="q2" value="a"> 1</label>
                 <label><input type="radio" name="q2" value="b"> 2</label>
                 <label><input type="radio" name="q2" value="c"> 3</label>
@@ -40,7 +40,7 @@
 
             <!-- Question 3 -->
             <section class="question" id="question3">
-                <p>3. What is the winning condition in a 5v5 duel in *Rivals*?</p>
+                <p>3. What is the winning condition in a 5v5 duel?</p>
                 <label><input type="radio" name="q3" value="a"> First to 10 kills</label>
                 <label><input type="radio" name="q3" value="b"> First team to reach 5 points</label>
                 <label><input type="radio" name="q3" value="c"> First player to achieve a streak of 5 wins</label>
@@ -57,6 +57,19 @@
             <button onclick="previousQuestion()">Previous</button>
             <button onclick="nextQuestion()">Next</button>
         </div>
+
+        <div class="navigation">
+            <button onclick="previousQuestion()">Previous</button>
+            <button onclick="nextQuestion()">Next</button>
+        </div>
+        
+        <!-- Submit Button -->
+        <div class="submit-section">
+            <button onclick="submitTest()">Submit</button>
+        </div>
+
+<div id="result"></div>
+
 
         <!-- Area for feedback on marked questions -->
         <div id="result"></div>
