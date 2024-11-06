@@ -14,7 +14,7 @@
         </header>
         
         <!-- Instructions -->
-        <p class="intro-text">Answer each question. You can mark questions for review or navigate back.</p>
+        <p class="intro-text">Answer each question. You can mark questions for review or navigate back to a previous question.</p>
 
         <!-- Questions container -->
         <div id="questions">
@@ -25,7 +25,7 @@
                 <label><input type="radio" name="q1" value="London"> London</label>
                 <label><input type="radio" name="q1" value="Berlin"> Berlin</label>
                 <label><input type="radio" name="q1" value="Madrid"> Madrid</label>
-                <button onclick="markForReview(1)">Mark for Review</button>
+                <button class="review-btn" onclick="markForReview(1)">Mark for Review</button>
             </section>
 
             <!-- Question 2 -->
@@ -35,7 +35,7 @@
                 <label><input type="radio" name="q2" value="12"> 12</label>
                 <label><input type="radio" name="q2" value="14"> 14</label>
                 <label><input type="radio" name="q2" value="15"> 15</label>
-                <button onclick="markForReview(2)">Mark for Review</button>
+                <button class="review-btn" onclick="markForReview(2)">Mark for Review</button>
             </section>
         </div>
 
@@ -45,7 +45,7 @@
             <button onclick="nextQuestion()">Next</button>
         </div>
 
-        <!-- Result area for feedback on answers -->
+        <!-- Area for feedback on marked questions -->
         <div id="result"></div>
     </div>
     <script src="script.js"></script>
