@@ -1,73 +1,108 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
 }
 
 .container {
-    width: 80%;
+    max-width: 900px;
     margin: auto;
     padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 }
 
-header h1 {
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    color: #333;
+}
+
+#testContent {
+    display: none;
+}
+
+#introSection {
     text-align: center;
 }
 
-.intro-text,
-.question,
-.submit-section {
+#timer {
+    text-align: center;
     margin-top: 20px;
+    font-size: 18px;
+    font-weight: bold;
 }
 
-ul#questionsList {
-    list-style: none;
+.question {
+    display: none;
+    margin-bottom: 20px;
+}
+
+.question ul {
+    list-style-type: none;
     padding: 0;
 }
 
-li.question {
-    margin-bottom: 20px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-}
-
-/* Styles for answer options */
-ul.answer-options {
-    list-style-type: none;
-    padding-left: 20px;
-    margin: 10px 0;
-}
-
-ul.answer-options li {
+.question li {
     margin: 5px 0;
 }
 
-/* Sidebar */
-#sidebar {
-    position: fixed;
-    right: 10px;
-    top: 50px;
-    width: 200px;
-    background-color: #f4f4f4;
-    padding: 10px;
-    border: 1px solid #ddd;
-}
-
 button {
-    margin-top: 10px;
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: #4CAF50;
     color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
 }
 
 button:disabled {
-    background-color: #ccc;
+    background-color: #ddd;
 }
 
-/* Question Marked for Review Style */
-.question-marked {
-    background-color: #fff3cd;
+button:hover {
+    background-color: #45a049;
+}
+
+.navigation {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#sidebar {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 200px;
+    height: 300px;
+    overflow-y: scroll;
+}
+
+#reviewList {
+    list-style-type: none;
+    padding: 0;
+}
+
+.review-btn {
+    margin-top: 10px;
+    background-color: #ff9800;
+}
+
+.review-btn:hover {
+    background-color: #e68900;
 }
