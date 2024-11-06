@@ -1,12 +1,14 @@
+/* Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body and Container */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #f5f7fa;
+    background-color: #f0f3f7;
     color: #333;
     display: flex;
     justify-content: center;
@@ -31,37 +33,37 @@ header {
 
 h1 {
     font-size: 24px;
-    color: #2d3e50;
+    color: #1a374d;
 }
 
 .intro-text {
     font-size: 16px;
-    color: #666;
-    margin-top: 10px;
+    color: #555;
     text-align: center;
+    margin-bottom: 20px;
 }
 
+/* Question Section */
 .question {
-    padding: 15px;
-    margin-bottom: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    display: none; /* Hidden by default */
+    display: none; /* Only show one question at a time */
+    padding: 20px;
+    background-color: #f7f9fc;
+    border: 1px solid #cfd8e3;
+    border-radius: 6px;
+    margin-bottom: 15px;
 }
 
 .question p {
     font-size: 18px;
     font-weight: bold;
     color: #333;
-    margin-bottom: 10px;
 }
 
 label {
-    font-size: 16px;
-    color: #555;
     display: block;
-    margin-bottom: 8px;
+    font-size: 16px;
+    color: #444;
+    margin: 8px 0;
     cursor: pointer;
 }
 
@@ -70,15 +72,14 @@ input[type="radio"] {
 }
 
 button {
-    padding: 10px;
+    padding: 12px 18px;
     font-size: 16px;
     color: #ffffff;
     background-color: #0073e6;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
-    width: auto;
+    transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -90,14 +91,30 @@ button:disabled {
     cursor: not-allowed;
 }
 
-#result {
-    margin-top: 20px;
-    font-size: 18px;
-    color: #4caf50;
-    text-align: center;
-}
-
 .navigation {
     display: flex;
     justify-content: space-between;
+}
+
+.review-btn {
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 8px 12px;
+    color: #555;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.review-btn:hover {
+    background-color: #e6b800;
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 18px;
+    color: #d9534f;
+    text-align: center;
 }
