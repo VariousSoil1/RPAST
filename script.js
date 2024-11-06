@@ -1,9 +1,10 @@
 let currentQuestion = 1;
-const totalQuestions = 114;  // Total questions for the test
-let markedQuestions = []; // Store marked questions
+const totalQuestions = 1;  // Set this to the total number of questions
 let reviewQuestions = new Set();
 let userName = "";
+let markedQuestions = []; // Array to store marked question numbers
 
+// Function to mark a question for review
 function markForReview(questionNumber) {
     // Check if the question has already been marked
     if (!markedQuestions.includes(questionNumber)) {
@@ -41,40 +42,59 @@ function goToQuestion(questionNumber) {
     }
 }
 
-// Function to start the test
+
+// Start the test and transition from the intro section to the test content
 function startTest() {
-    let userName = document.getElementById("userName").value;
+    userName = document.getElementById("userName").value;
     if (!userName) {
         alert("Please enter your name.");
         return;
     }
+    // Hide the intro section and show the test container
     document.getElementById("introSection").style.display = "none";
     document.getElementById("testContent").style.display = "block";
-    showQuestion(1); // Start with the first question
+    
+    // Set the user's name in the header or anywhere needed
+    document.getElementById('testContent').innerHTML += `<h3>Hello, ${userName}! Let's start the test.</h3>`;
+
+    showQuestion(currentQuestion);
 }
 
-// Function to show the current question
+// Show the specific question
 function showQuestion(questionNumber) {
-    let allQuestions = document.querySelectorAll(".question");
-    allQuestions.forEach(function (question) {
-        question.style.display = "none"; // Hide all questions
-    });
+    const questionElement = document.getElementById(`question${questionNumber}`);
+    questionElement.style.display = 'block'; // Show the question
 
-    let currentQuestion = document.getElementById("question" + questionNumber);
-    if (currentQuestion) {
-        currentQuestion.style.display = "block"; // Show the selected question
+    // Hide the previous question (if applicable)
+    if (questionNumber > 1) {
+        const prevQuestion = document.getElementById(`question${questionNumber - 1}`);
+        prevQuestion.style.display = 'none';
+    }
+    
+    // Show the submit button when the last question is reached
+    if (questionNumber === totalQuestions) {
+        document.querySelector('.submit-section').style.display = 'block';
     }
 }
 
-// Example functions to navigate between questions
+// Move to the next question
 function nextQuestion() {
-    let currentQuestion = document.querySelector(".question:visible");
-    let currentQuestionNumber = parseInt(currentQuestion.id.replace("question", ""));
-    showQuestion(currentQuestionNumber + 1);
+    if (currentQuestion < totalQuestions) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
+    }
 }
 
+// Move to the previous question
 function previousQuestion() {
-    let currentQuestion = document.querySelector(".question:visible");
-    let currentQuestionNumber = parseInt(currentQuestion.id.replace("question", ""));
-    showQuestion(currentQuestionNumber - 1);
+    if (currentQuestion > 1) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+    }
+}
+
+// Submit the test
+function submitTest() {
+    alert(`Test submitted by ${userName}.`);
+    // You can calculate and show the results here
 }
