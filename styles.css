@@ -1,173 +1,56 @@
-/* Global Styles */
-* {
+/* Basic Reset and Styling */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
-/* Body and general container */
-body {
-    background-color: #f4f7fc;
-    color: #333;
-    font-size: 16px;
-    line-height: 1.5;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-}
-
-/* Container for all content */
 .container {
-    display: flex;
-    width: 100%;
-    max-width: 1200px;
-    margin-top: 30px;
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+}
+
+header h1 {
+    text-align: center;
+}
+
+.intro-text,
+.question,
+.navigation,
+.submit-section {
+    margin-top: 20px;
 }
 
 /* Sidebar */
 #sidebar {
     position: fixed;
-    top: 0;
-    right: 0;
+    right: 10px;
+    top: 50px;
     width: 200px;
-    height: 100%;
     background-color: #f4f4f4;
     padding: 10px;
-    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
+    border: 1px solid #ddd;
 }
 
 #sidebar h3 {
-    font-size: 20px;
-    margin-bottom: 15px;
+    margin-top: 0;
 }
 
-#reviewList {
-    list-style-type: none;
-    padding-left: 0;
-}
-
-#reviewList li {
-    margin-bottom: 10px;
-    cursor: pointer;
-    text-decoration: underline;
-}
-
-
-/* Test Content */
-#testContent {
-    width: 100%;
-}
-
-/* Header */
-header {
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-header h1 {
-    color: #007bff;
-    font-size: 32px;
-}
-
-/* Question Section */
-.question {
-    display: none;
-    margin-bottom: 20px;
-}
-
-.question p {
-    font-weight: bold;
-    font-size: 18px;
-    margin-bottom: 10px;
-}
-
-.question label {
-    display: block;
-    margin-bottom: 8px;
-    font-size: 16px;
-}
-
-.review-btn {
-    background-color: #ffcc00;
-    color: #fff;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+button {
     margin-top: 10px;
-    transition: background-color 0.3s;
-}
-
-.review-btn:hover {
-    background-color: #e6b800;
-}
-
-/* Navigation Buttons */
-.navigation {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.navigation button {
-    padding: 12px 20px;
-    font-size: 16px;
+    padding: 10px 20px;
     background-color: #007bff;
     color: white;
     border: none;
-    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
 }
 
-.navigation button:hover {
-    background-color: #0056b3;
+button:disabled {
+    background-color: #ccc;
 }
 
-.navigation button:disabled {
-    background-color: #cccccc;
-    cursor: not-allowed;
-}
-
-/* Submit Section */
-.submit-section {
-    text-align: center;
-    margin-top: 30px;
-    display: none;
-}
-
-.submit-section button {
-    padding: 14px 20px;
-    font-size: 18px;
-    color: #ffffff;
-    background-color: #28a745;  /* Green color */
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.submit-section button:hover {
-    background-color: #218838;
-}
-
-/* Result Section */
-#result {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 20px;
-    font-weight: bold;
-    color: #333;
-}
-
-/* Intro Section */
-#introSection {
-    text-align: center;
-    padding: 30px;
-}
-
-/* Hide test until intro is completed */
-#testContent {
-    display: none;
+/* Question Marked for Review Style */
+.question-marked {
+    background-color: #fff3cd;
 }
