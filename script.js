@@ -7,12 +7,22 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function showQuestion(questionNumber) {
+    // Hide all questions and display the current one
     document.querySelectorAll(".question").forEach(q => q.style.display = "none");
     const currentQ = document.getElementById(`question${questionNumber}`);
     if (currentQ) currentQ.style.display = "block";
 
+    // Hide/Show Next and Previous Buttons
     document.querySelector("button[onclick='previousQuestion()']").disabled = questionNumber === 1;
     document.querySelector("button[onclick='nextQuestion()']").disabled = questionNumber === totalQuestions;
+
+    // Show Submit Button only on the last question
+    const submitButton = document.querySelector(".submit-section");
+    if (questionNumber === totalQuestions) {
+        submitButton.style.display = "block";  // Show the Submit button
+    } else {
+        submitButton.style.display = "none";   // Hide the Submit button
+    }
 }
 
 function nextQuestion() {
@@ -40,27 +50,22 @@ function markForReview(questionNumber) {
 }
 
 function submitTest() {
-    let totalQuestions = 114;
     let correctAnswers = 0;
-
-    // Loop through each question and check answers
     for (let i = 1; i <= totalQuestions; i++) {
         const question = document.querySelector(`input[name="q${i}"]:checked`);
         if (question && checkAnswer(i, question.value)) {
             correctAnswers++;
         }
     }
-
-    // Display the result
     displayResult(correctAnswers, totalQuestions);
 }
 
 function checkAnswer(questionNumber, selectedAnswer) {
-    // This function checks the selected answer
+    // Define correct answers for each question
     const correctAnswers = {
         1: 'b',  // For question 1, correct answer is 'b'
         2: 'b',  // For question 2, correct answer is 'b'
-        // Continue for all other questions (q3, q4, ..., q114)
+        // Continue for all other questions
     };
     return correctAnswers[questionNumber] === selectedAnswer;
 }
