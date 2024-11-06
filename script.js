@@ -1,5 +1,5 @@
 let currentQuestion = 1;
-const totalQuestions = 2;
+const totalQuestions = 114;  // Total questions for the test
 let reviewQuestions = new Set();
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -7,14 +7,10 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 function showQuestion(questionNumber) {
-    // Hide all questions
     document.querySelectorAll(".question").forEach(q => q.style.display = "none");
-
-    // Show current question
     const currentQ = document.getElementById(`question${questionNumber}`);
     if (currentQ) currentQ.style.display = "block";
 
-    // Enable/Disable navigation buttons
     document.querySelector("button[onclick='previousQuestion()']").disabled = questionNumber === 1;
     document.querySelector("button[onclick='nextQuestion()']").disabled = questionNumber === totalQuestions;
 }
