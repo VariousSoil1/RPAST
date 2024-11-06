@@ -1,21 +1,24 @@
-function checkAnswers() {
-    // Define correct answers
+function submitTest() {
+    const form = document.getElementById("testForm");
+    const resultDiv = document.getElementById("result");
+
+    // Correct answers
     const correctAnswers = {
         q1: "Paris",
-        q2: "4"
+        q2: "12"
     };
 
     let score = 0;
     const totalQuestions = Object.keys(correctAnswers).length;
 
-    // Check answers
-    Object.keys(correctAnswers).forEach((question) => {
-        const userAnswer = document.querySelector(`input[name="${question}"]:checked`);
-        if (userAnswer && userAnswer.value === correctAnswers[question]) {
+    // Loop through questions and check answers
+    for (const [question, answer] of Object.entries(correctAnswers)) {
+        const userAnswer = form[question].value;
+        if (userAnswer === answer) {
             score++;
         }
-    });
+    }
 
     // Display result
-    document.getElementById("result").innerText = `You scored ${score} out of ${totalQuestions}`;
+    resultDiv.innerHTML = `You scored ${score} out of ${totalQuestions}.`;
 }
