@@ -1,37 +1,49 @@
-/* Reset */
+/* Basic Reset */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
+/* Body and Container */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f7fa;
+    font-family: 'Arial', sans-serif;
+    background-color: #f5f7fa;
     color: #333;
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
+    padding: 20px;
 }
 
 .container {
     width: 100%;
     max-width: 600px;
-    background: #ffffff;
+    background-color: #ffffff;
     border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 20px 30px;
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    padding: 30px;
+}
+
+/* Header Styles */
+header {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
 h1 {
     font-size: 24px;
     color: #2d3e50;
-    text-align: center;
-    margin-bottom: 20px;
 }
 
-/* Form and Question Styling */
+.intro-text {
+    font-size: 16px;
+    color: #666;
+    margin-top: 10px;
+}
+
+/* Question Styling */
 form {
     display: flex;
     flex-direction: column;
@@ -39,7 +51,7 @@ form {
 
 .question {
     padding: 15px;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
     background-color: #f9f9f9;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -52,26 +64,27 @@ form {
     margin-bottom: 10px;
 }
 
+/* Label Styling */
 label {
     font-size: 16px;
     color: #555;
-    margin-bottom: 8px;
-    cursor: pointer;
-    display: block;
     padding: 8px 10px;
     border-radius: 5px;
-    transition: background-color 0.2s ease;
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 label:hover {
-    background-color: #e8f0fe;
+    background-color: #e0f0fe;
 }
 
 input[type="radio"] {
     margin-right: 8px;
 }
 
-/* Submit Button */
+/* Button Styling */
 button {
     padding: 12px;
     font-size: 18px;
@@ -81,7 +94,9 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+    width: 100%;
+    margin-top: 20px;
 }
 
 button:hover {
@@ -91,8 +106,8 @@ button:hover {
 /* Result Display */
 #result {
     margin-top: 20px;
-    text-align: center;
     font-size: 20px;
     font-weight: bold;
     color: #4caf50;
+    text-align: center;
 }
