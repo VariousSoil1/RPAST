@@ -1,7 +1,47 @@
 let currentQuestion = 1;
 const totalQuestions = 114;  // Total questions for the test
+let markedQuestions = []; // Store marked questions
 let reviewQuestions = new Set();
 let userName = "";
+
+function markForReview(questionNumber) {
+    // Check if the question has already been marked for review
+    if (!markedQuestions.includes(questionNumber)) {
+        markedQuestions.push(questionNumber); // Add to the list
+        updateReviewList(); // Update sidebar
+    }
+}
+
+// Update the review sidebar
+function updateReviewList() {
+    let reviewList = document.getElementById("reviewList");
+    reviewList.innerHTML = ""; // Clear the current list
+
+    // Add each marked question to the list
+    markedQuestions.forEach(function (questionNumber) {
+        let li = document.createElement("li");
+        li.textContent = "Question " + questionNumber;
+        li.onclick = function () {
+            goToQuestion(questionNumber); // Navigate to the marked question
+        };
+        reviewList.appendChild(li);
+    });
+}
+
+// Go to a specific question when clicked from the review list
+function goToQuestion(questionNumber) {
+    // Hide all questions
+    let allQuestions = document.querySelectorAll(".question");
+    allQuestions.forEach(function (question) {
+        question.style.display = "none";
+    });
+
+    // Show the selected question
+    let question = document.getElementById("question" + questionNumber);
+    if (question) {
+        question.style.display = "block";
+    }
+}
 
 // Show the introductory section to collect user info
 function startTest() {
@@ -50,27 +90,6 @@ function previousQuestion() {
     if (currentQuestion > 1) {
         currentQuestion--;
         showQuestion(currentQuestion);
-    }
-}
-
-function markForReview(questionNumber) {
-    const reviewList = document.getElementById("reviewList");
-    if (reviewQuestions.has(questionNumber)) {
-        reviewQuestions.delete(questionNumber);
-        // Remove from the review list
-        document.getElementById(`review${questionNumber}`).remove();
-    } else {
-        reviewQuestions.add(questionNumber);
-        // Add to the review list
-        const listItem = document.createElement("li");
-        listItem.id = `review${questionNumber}`;
-        listItem.textContent = `Question ${questionNumber}`;
-        listItem.addEventListener('click', () => {
-            // When a marked question is clicked, jump to it
-            currentQuestion = questionNumber;
-            showQuestion(currentQuestion);
-        });
-        reviewList.appendChild(listItem);
     }
 }
 
