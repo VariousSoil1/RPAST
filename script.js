@@ -1,74 +1,119 @@
-let currentQuestionIndex = 0;
-let totalQuestions = 114; // Adjust as necessary
-const reviewQuestions = new Set();
+// Global variables to track the test state
+let currentQuestion = 0;
+let userAnswers = {};
+let markedQuestions = [];
+let timer;
+let totalQuestions = 3; // Set to 3 for sample questions, change for more questions
+let timeLeft = 3600; // Timer set to 1 hour (3600 seconds)
 
+// Wait until the DOM is fully loaded before executing any scripts
+document.addEventListener("DOMContentLoaded", function () {
+    const startButton = document.getElementById("startButton");
+    if (startButton) {
+        startButton.addEventListener("click", startTest);  // Properly attaching the event listener
+    }
+});
+
+// Function to start the test
 function startTest() {
-    const userName = document.getElementById("userName").value;
-    if (!userName) {
+    const userName = document.getElementById('userName').value.trim();
+    if (userName === "") {
         alert("Please enter your name.");
         return;
     }
 
-    // Hide intro and show test content
-    document.getElementById("introSection").style.display = "none";
-    document.getElementById("testContent").style.display = "block";
-    showQuestion(currentQuestionIndex);
+    // Start the timer
+    startTimer();
+
+    document.getElementById('introSection').style.display = 'none';
+    document.getElementById('testContent').style.display = 'block';
+    showQuestion(currentQuestion);
 }
 
+// Function to start and update the timer
+function startTimer() {
+    timer = setInterval(function () {
+        if (timeLeft <= 0) {
+            clearInterval(timer);
+            alert("Time's up! The test is automatically submitted.");
+            submitTest();
+        } else {
+            document.getElementById("timer").innerText = `Time Left: ${formatTime(timeLeft)}`;
+            timeLeft--;
+        }
+    }, 1000);
+}
+
+// Function to format the time as HH:MM:SS
+function formatTime(seconds) {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const secs = seconds % 60;
+    return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+}
+
+// Function to show a specific question
 function showQuestion(index) {
-    // Hide all questions, then show the current one
-    const questions = document.querySelectorAll(".question");
-    questions.forEach(q => q.style.display = "none");
-
-    questions[index].style.display = "block";
-    updateNavigationButtons();
-    toggleSubmitButton();
-}
-
-function nextQuestion() {
-    if (currentQuestionIndex < totalQuestions - 1) {
-        currentQuestionIndex++;
-        showQuestion(currentQuestionIndex);
-    }
-}
-
-function previousQuestion() {
-    if (currentQuestionIndex > 0) {
-        currentQuestionIndex--;
-        showQuestion(currentQuestionIndex);
-    }
-}
-
-function markForReview(questionIndex) {
-    reviewQuestions.add(questionIndex);
-    updateReviewSidebar();
-}
-
-function updateReviewSidebar() {
-    const reviewList = document.getElementById("reviewList");
-    reviewList.innerHTML = "";
-    reviewQuestions.forEach(questionIndex => {
-        const listItem = document.createElement("li");
-        listItem.textContent = `Question ${questionIndex}`;
-        reviewList.appendChild(listItem);
+    const questions = document.querySelectorAll('.question');
+    questions.forEach((q, i) => {
+        q.style.display = i === index ? 'block' : 'none';
     });
+
+    // Update navigation buttons
+    document.getElementById('previousButton').disabled = index === 0;
+    document.getElementById('nextButton').disabled = index === questions.length - 1;
+
+    // Show Submit button on the last question
+    document.querySelector('.submit-section').style.display = index === questions.length - 1 ? 'block' : 'none';
 }
 
-function updateNavigationButtons() {
-    document.querySelector(".navigation button[onclick='previousQuestion()']").disabled = (currentQuestionIndex === 0);
-    document.querySelector(".navigation button[onclick='nextQuestion()']").disabled = (currentQuestionIndex === totalQuestions - 1);
-}
-
-function toggleSubmitButton() {
-    const submitSection = document.querySelector(".submit-section");
-    if (currentQuestionIndex === totalQuestions - 1) {
-        submitSection.style.display = "block";
-    } else {
-        submitSection.style.display = "none";
+// Function to navigate to the next question
+function nextQuestion() {
+    if (currentQuestion < totalQuestions - 1) {
+        currentQuestion++;
+        showQuestion(currentQuestion);
     }
 }
 
-function submitTest() {
-    alert("Test submitted! Thank you for participating.");
-    // Implement actual submission logic here
+// Function to navigate to the previous question
+function previousQuestion() {
+    if (currentQuestion > 0) {
+        currentQuestion--;
+        showQuestion(currentQuestion);
+    }
 }
+
+// Function to mark a question for review
+function markForReview(questionNumber) {
+    if (!markedQuestions.includes(questionNumber)) {
+        markedQuestions.push(questionNumber);
+        const reviewList = document.getElementById('reviewList');
+        const li = document.createElement('li');
+        li.textContent = `Question ${questionNumber}`;
+        reviewList.appendChild(li);
+    }
+}
+
+// Function to save user answer for a question
+function saveAnswer(questionNumber) {
+    const question = document.querySelector(`#question${questionNumber}`);
+    const selectedAnswer = question.querySelector('input[type="radio"]:checked');
+    if (selectedAnswer) {
+        userAnswers[questionNumber] = selectedAnswer.value;
+    }
+}
+
+// Function to submit the test
+function submitTest() {
+    clearInterval(timer);
+    alert("Test Submitted! Thank you for completing the test.");
+    // Optionally, display user answers or submit the result to the server
+}
+
+// Add event listeners for saving answers when they change
+document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+    radio.addEventListener("change", function () {
+        const questionNumber = radio.closest('.question').id.replace('question', '');
+        saveAnswer(questionNumber);
+    });
+});
