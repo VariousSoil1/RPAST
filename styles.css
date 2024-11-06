@@ -1,27 +1,24 @@
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-}
+function submitTest() {
+    const form = document.getElementById("testForm");
+    const resultDiv = document.getElementById("result");
 
-h1 {
-    color: #333;
-}
+    // Define correct answers
+    const correctAnswers = {
+        q1: "Paris",
+        q2: "12"
+    };
 
-.question {
-    margin: 15px 0;
-}
+    let score = 0;
+    let totalQuestions = Object.keys(correctAnswers).length;
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-}
+    // Loop through questions and check answers
+    for (const [question, answer] of Object.entries(correctAnswers)) {
+        const userAnswer = form[question].value;
+        if (userAnswer === answer) {
+            score++;
+        }
+    }
 
-#result {
-    font-size: 18px;
-    font-weight: bold;
-    color: green;
-    margin-top: 20px;
+    // Display result
+    resultDiv.innerHTML = `You scored ${score} out of ${totalQuestions}`;
 }
