@@ -7,7 +7,7 @@ let markedQuestions = []; // Array to store marked question numbers
 // Function to mark a question for review
 function markForReview(questionNumber) {
     // Check if the question has already been marked
-    Console.log("Marked " + questionNumber + " for review.);
+    console.log("Marked " + questionNumber + " for review.);
     if (!markedQuestions.includes(questionNumber)) {
         markedQuestions.push(questionNumber); // Add to the marked list
         updateReviewList(); // Update the review sidebar
