@@ -10,11 +10,14 @@ function startTest() {
         alert("Please enter your name.");
         return;
     }
-    // Hide the intro and show the test content
+    // Hide the intro section and show the test container
     document.getElementById("introSection").style.display = "none";
     document.getElementById("testContent").style.display = "block";
+    
+    // Set the user's name in the header or anywhere needed
+    document.getElementById('testContent').innerHTML += `<h3>Hello, ${userName}! Please start the test.</h3>`;
+
     showQuestion(currentQuestion);
-    document.getElementById("sidebar").style.display = "block"; // Show the sidebar
 }
 
 function showQuestion(questionNumber) {
