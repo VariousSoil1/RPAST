@@ -27,38 +27,32 @@ body {
 
 /* Sidebar */
 #sidebar {
-    width: 300px;
-    background-color: #f9f9f9;
-    padding: 15px;
-    box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-left: 20px;
     position: fixed;
+    top: 0;
+    right: 0;
+    width: 200px;
     height: 100%;
-    display: none;
+    background-color: #f4f4f4;
+    padding: 10px;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.2);
 }
 
 #sidebar h3 {
-    text-align: center;
-    color: #333;
+    font-size: 20px;
+    margin-bottom: 15px;
 }
 
-#sidebar ul {
+#reviewList {
     list-style-type: none;
+    padding-left: 0;
 }
 
-#sidebar ul li {
-    padding: 10px;
-    background-color: #28a745;
-    color: white;
-    margin: 5px 0;
-    text-align: center;
-    border-radius: 5px;
+#reviewList li {
+    margin-bottom: 10px;
     cursor: pointer;
+    text-decoration: underline;
 }
 
-#sidebar ul li:hover {
-    background-color: #218838;
-}
 
 /* Test Content */
 #testContent {
