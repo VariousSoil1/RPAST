@@ -71,6 +71,40 @@ function markForReview(questionNumber) {
     }
 }
 
+<!-- Intro Section -->
+<div id="introSection">
+    <h1>Welcome to the Rivals Test</h1>
+    <input type="text" id="userName" placeholder="Enter your name">
+    <button onclick="startTest()">Start Test</button>
+</div>
+
+<!-- Test Content Section -->
+<div id="testContent" class="container" style="display: none;">
+    <div id="question1" class="question">
+        <!-- Question 1 -->
+        <p>What is the best weapon in Rivals?</p>
+        <button onclick="nextQuestion()">Next</button>
+    </div>
+    <div id="question2" class="question hidden">
+        <!-- Question 2 -->
+        <p>How do you earn keys in Rivals?</p>
+        <button onclick="nextQuestion()">Next</button>
+    </div>
+    <!-- Add more questions here -->
+    <div class="submit-section" style="display: none;">
+        <button onclick="submitTest()">Submit Test</button>
+    </div>
+</div>
+
+<!-- Sidebar for Review Questions -->
+<div id="sidebar" class="sidebar">
+    <h3>Marked for Review</h3>
+    <ul id="reviewList">
+        <!-- Review list items will appear here -->
+    </ul>
+</div>
+
+
 function submitTest() {
     alert("Test Submitted! Thank you for participating.");
     // You can also handle submitting data or redirecting to another page here.
