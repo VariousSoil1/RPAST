@@ -118,3 +118,23 @@ button:disabled {
     color: #d9534f;
     text-align: center;
 }
+
+.submit-section {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.submit-section button {
+    padding: 14px 20px;
+    font-size: 18px;
+    color: #ffffff;
+    background-color: #28a745; /* Green color for the submit button */
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.submit-section button:hover {
+    background-color: #218838;
+}
