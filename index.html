@@ -3,27 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RPAST Test</title>
+    <title>RPAST Assessment Test</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>RPAST Assessment Test</h1>
+        <header>
+            <h1>RPAST Assessment Test</h1>
+            <p class="intro-text">Please answer all questions to the best of your ability.</p>
+        </header>
         <form id="testForm">
-            <div class="question">
+            <section class="question">
                 <p>1. What is the capital of France?</p>
                 <label><input type="radio" name="q1" value="Paris"> Paris</label>
                 <label><input type="radio" name="q1" value="London"> London</label>
                 <label><input type="radio" name="q1" value="Berlin"> Berlin</label>
                 <label><input type="radio" name="q1" value="Madrid"> Madrid</label>
-            </div>
-            <div class="question">
+            </section>
+            <section class="question">
                 <p>2. What is 5 + 7?</p>
                 <label><input type="radio" name="q2" value="10"> 10</label>
                 <label><input type="radio" name="q2" value="12"> 12</label>
                 <label><input type="radio" name="q2" value="14"> 14</label>
                 <label><input type="radio" name="q2" value="15"> 15</label>
-            </div>
+            </section>
             <button type="button" onclick="submitTest()">Submit</button>
         </form>
         <div id="result"></div>
